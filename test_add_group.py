@@ -1,34 +1,22 @@
-import unittest
-from selenium.webdriver.firefox.webdriver import WebDriver
+from Application import Application
+import pytest
 
 
-class test_add_group(unittest.TestCase):
-    def setUp(self):
-        self.wd = WebDriver()
-        self.wd.implicitly_wait(60)
-
-    def test_add_group(self):
-        wd = self.wd
-        wd.get("https://localhost/addressbook/")
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("pass").send_keys("secret")
-        wd.find_element_by_name("user").send_keys("admin")
-        wd.find_element_by_xpath("//input[@value='Login']").click()
-        wd.find_element_by_link_text("groups").click()
-        wd.find_element_by_name("new").click()
-        wd.find_element_by_name("group_name").click()
-        wd.find_element_by_name("group_name").send_keys("group1")
-        wd.find_element_by_name("group_header").click()
-        wd.find_element_by_name("group_header").send_keys("group_header")
-        wd.find_element_by_name("group_footer").click()
-        wd.find_element_by_name("group_footer").send_keys("group_footer")
-        wd.find_element_by_name("submit").click()
-        wd.find_element_by_link_text("group page").click()
-        wd.find_element_by_link_text("Logout").click()
-
-    def tearDown(self):
-        self.wd.quit()
+@pytest.fixture
+def app(request):
+    fixture = Application()
+    request.addfinalizer(fixture.destroy)
+    return fixture
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_add_group(app):
+    app.login(username='admin', password='secret')
+    app.create_group()
+    app.logout()
+
+
+def test_add_empty_group(app):
+    app.login(username='admin', password='secret')
+    app.create_group()
+    app.logout()
+
