@@ -1,4 +1,4 @@
-from Application import Application
+from Fixture.Application import Application
 import pytest
 
 
