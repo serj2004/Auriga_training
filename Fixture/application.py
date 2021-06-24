@@ -23,7 +23,9 @@ class Application:
 
     def open_home_page(self):
         wd = self.wd
-        wd.get("https://localhost/addressbook/")
+        url = "https://localhost/addressbook/"
+        if not (wd.current_url == url):
+            wd.get(url)
 
     def destroy(self):
         self.wd.quit()
