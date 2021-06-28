@@ -55,8 +55,7 @@ class GroupHelper:
 
     def select_first_group(self):
         wd = self.app.wd
-        self.open_groups_page()
-        wd.find_element_by_name("selected[]").click()
+        self.select_group_by_index(0)
         return wd
 
     def select_group_by_index(self, index):

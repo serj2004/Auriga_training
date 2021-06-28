@@ -13,6 +13,10 @@ class SessionHelper:
         wd.find_element_by_name("user").send_keys(username)
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
+    def get_logged_user(self):
+        wd = self.app.wd
+        return wd.find_element_by_xpath("//*[@id='top']/form/b").text[1:-1]
+
     def logout(self):
         wd = self.app.wd
         wd.find_element_by_link_text("Logout").click()
@@ -29,7 +33,7 @@ class SessionHelper:
 
     def is_logged_in_as(self, username):
         wd = self.app.wd
-        return wd.find_element_by_xpath("//*[@id='top']/form/b").text == "("+username+")"
+        return self.get_logged_user() == username
 
     def ensure_login(self, username, password):
         if self.is_logged_in():
