@@ -1,7 +1,5 @@
 import re
-
 from selenium.webdriver.support.ui import Select
-
 from Model.contact import Contact
 
 
@@ -104,10 +102,9 @@ class ContactHelper:
                 id_cont = cells[0].find_element_by_tag_name("input").get_attribute("value")
                 last_name = cells[2].text
                 first_name = cells[1].text
-                all_phones = cells[5].text.splitlines()
+                all_phones = cells[5].text
                 self.contact_cashe.append(Contact(firstname=first_name, lastname=last_name, id=id_cont,
-                                                  homephone=all_phones[0], mobilephone=all_phones[1],
-                                                  workphone=all_phones[2], phone2=all_phones[3]))
+                                                  all_phones_from_home_page=all_phones))
         return list(self.contact_cashe)
 
     def open_contact_to_edit_by_index(self, index):
