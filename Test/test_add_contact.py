@@ -1,16 +1,22 @@
 # -*- coding: utf-8 -*-
-import os
 from Model.contact import Contact
+import string
+import random
+import pytest
 
 
-def test_add_contact(app):
+def random_string(prefix, maxlen):
+    simbols = string.ascii_letters + string.digits + string.punctuation + ""*10
+    return prefix + "".join([random.choice(simbols) for i in range(random.randrange(maxlen))])
+
+
+test_data = [Contact(firstname="", lastname="")] + [Contact(firstname=random_string("firstname", 10),
+                                                            lastname=random_string("lastname", 10)) for i in range(5)]
+
+
+@pytest.mark.parametrize("contact", test_data, ids=[repr(x) for x in test_data])
+def test_add_contact(app, contact):
     old_contacts = app.contact.get_contact_list()
-    contact = Contact(firstname='firstname', middlename='middlename', lastname='lastname', nickname='nickname',
-                      photo=os.path.join(os.path.join(os.getcwd(), 'photo'), 'eo4qjv87_thumb.jpg'),
-                      title='title', company='company', address='address',
-                      homephone='222', mobilephone='333', workphone='555', fax='1234567890', email='1@mail.ru',
-                      email2='2@mail.ru', email3='3@mail.ru', homepage='homepage', bday='1',
-                      bmonth='January', byear='1980', address2='address2', phone2='444', notes='notes')
     app.contact.create(contact)
     new_contacts = app.contact.get_contact_list()
     assert len(old_contacts) + 1 == app.contact.count()

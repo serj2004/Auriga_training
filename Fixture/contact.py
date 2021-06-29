@@ -21,12 +21,6 @@ class ContactHelper:
         wd = self.app.wd
         self.open_contact_page()
         self.fill_contact_form(contact)
-        file = wd.find_element_by_xpath("//input[@type='file']")
-        file.send_keys(contact.photo)
-        wd.find_element_by_name("bday").click()
-        Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.bday)
-        wd.find_element_by_name("bmonth").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.bmonth)
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         self.return_to_home_page()
         self.contact_cashe = None
