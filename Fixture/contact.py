@@ -1,5 +1,9 @@
 import re
+
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from Model.contact import Contact
 
 
@@ -79,6 +83,8 @@ class ContactHelper:
         wd.find_elements_by_name("selected[]")[index].click()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
+        WebDriverWait(wd, 10).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "div.msgbox")))
         self.contact_cashe = None
 
     def return_to_home_page(self):
