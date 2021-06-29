@@ -48,9 +48,9 @@ class ContactHelper:
         self.change_contact_value('title', contact.title)
         self.change_contact_value('company', contact.company)
         self.change_contact_value('address', contact.address)
-        self.change_contact_value('homephone', contact.homephone)
-        self.change_contact_value('mobilephone', contact.mobilephone)
-        self.change_contact_value('workphone', contact.workphone)
+        self.change_contact_value('home', contact.homephone)
+        self.change_contact_value('mobile', contact.mobilephone)
+        self.change_contact_value('work', contact.workphone)
         self.change_contact_value('fax', contact.fax)
         self.change_contact_value('email', contact.email)
         self.change_contact_value('email2', contact.email2)
@@ -100,8 +100,8 @@ class ContactHelper:
             for row in wd.find_elements_by_name("entry"):
                 cells = row.find_elements_by_tag_name("td")
                 id_cont = cells[0].find_element_by_tag_name("input").get_attribute("value")
-                last_name = cells[2].text
-                first_name = cells[1].text
+                last_name = cells[1].text
+                first_name = cells[2].text
                 all_phones = cells[5].text
                 self.contact_cashe.append(Contact(firstname=first_name, lastname=last_name, id=id_cont,
                                                   all_phones_from_home_page=all_phones))
