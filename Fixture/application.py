@@ -16,11 +16,11 @@ class Application:
         else:
             raise ValueError("Unrecognized browser %s" % browser)
         self.wd.implicitly_wait(1)
-        self.open_home_page()
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
         self.base_url = base_url
+        self.open_home_page()
 
     def is_valid(self):
         try:
