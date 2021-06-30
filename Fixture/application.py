@@ -17,7 +17,7 @@ class Application:
             raise ValueError("Unrecognized browser %s" % browser)
         if username != "admin":
             raise ValueError("Username is not valid!")
-        self.wd.implicitly_wait(1)
+        self.wd.implicitly_wait(5)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
