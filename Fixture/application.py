@@ -11,8 +11,8 @@ class Application:
             self.wd = webdriver.Firefox()
         elif browser == "chrome":
             self.wd = webdriver.Chrome()
-        elif browser == "edge":
-            self.wd = webdriver.Edge()
+        elif browser == "ie":
+            self.wd = webdriver.Ie()
         else:
             raise ValueError("Unrecognized browser %s" % browser)
         self.wd.implicitly_wait(1)
