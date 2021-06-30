@@ -1,3 +1,4 @@
+import importlib
 from Fixture.application import Application
 import pytest
 import os.path
@@ -35,3 +36,14 @@ def stop(request):
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="firefox")
     parser.addoption("--target", action="store", default="target.json")
+
+
+def pytest_generate_tests(metafunc):
+    for fix in metafunc.fixturenames:
+        if fix.startswith("data_"):
+            testdata = load_from_module(fix[5:])
+            metafunc.parametrize(fix, testdata, ids=[str(x) for x in testdata])
+
+
+def load_from_module(module):
+    return importlib.import_module("Data.%s" % module).testdata
