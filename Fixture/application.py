@@ -15,8 +15,8 @@ class Application:
             self.wd = webdriver.Ie()
         else:
             raise ValueError("Unrecognized browser %s" % browser)
-        if username != "admin":
-            raise ValueError("Username is not valid!")
+        if username != "admin" or password != "secret":
+            raise ValueError("Unrecognized user!")
         self.wd.implicitly_wait(5)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)

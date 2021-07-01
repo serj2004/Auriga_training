@@ -33,5 +33,5 @@ def stop(request):
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="firefox")
     parser.addoption("--baseUrl", action="store", default="http://localhost/addressbook/")
-    parser.addoption("--user", action="store", default=None)
-    parser.addoption("--pass", action="store", default=None)
+    parser.addoption("--user", action="store", default="admin")
+    parser.addoption("--pass", action="store", default="secret")
