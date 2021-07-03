@@ -1,3 +1,4 @@
+import pytest
 
 
 class SessionHelper:
@@ -43,3 +44,5 @@ class SessionHelper:
                 self.logout()
         else:
             self.login(username, password)
+            if not self.is_logged_in():
+                pytest.skip("Authorization failed!")

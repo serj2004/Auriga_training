@@ -17,7 +17,7 @@ def app(request):
     else:
         if not fixture.is_valid():
             fixture = Application(browser=browser, base_url=base_url, username=username, password=password)
-    fixture.session.ensure_login(username='admin', password='secret')
+    fixture.session.ensure_login(username=username, password=password)
     return fixture
 
 
@@ -33,5 +33,5 @@ def stop(request):
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="firefox")
     parser.addoption("--baseUrl", action="store", default="http://localhost/addressbook/")
-    parser.addoption("--user", action="store", default="admin")
-    parser.addoption("--pass", action="store", default="secret")
+    parser.addoption("--user", action="store", default="")
+    parser.addoption("--pass", action="store", default="")
