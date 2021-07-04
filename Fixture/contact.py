@@ -37,6 +37,15 @@ class ContactHelper:
         self.return_to_home_page()
         self.contact_cashe = None
 
+    def edit_contact_by_id(self, id, new_contact_data):
+        wd = self.app.wd
+        self.app.open_home_page()
+        wd.find_element_by_xpath("//a[@href='edit.php?id=%s']" % id).click()
+        self.fill_contact_form(new_contact_data)
+        wd.find_element_by_xpath("//div[@id='content']/form/input[22]").click()
+        self.return_to_home_page()
+        self.contact_cashe = None
+
     def fill_contact_form(self, contact):
         wd = self.app.wd
         self.change_contact_value('firstname', contact.firstname)
@@ -80,6 +89,20 @@ class ContactHelper:
         WebDriverWait(wd, 10).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "div.msgbox")))
         self.contact_cashe = None
+
+    def delete_contact_by_id(self, id):
+        wd = self.select_contact_by_id(id)
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.switch_to_alert().accept()
+        WebDriverWait(wd, 10).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "div.msgbox")))
+        self.contact_cashe = None
+
+    def select_contact_by_id(self, id):
+        wd = self.app.wd
+        self.app.open_home_page()
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+        return wd
 
     def return_to_home_page(self):
         wd = self.app.wd
