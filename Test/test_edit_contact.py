@@ -12,10 +12,8 @@ def test_edit_some_contact(app, db, check_ui):
     contact.id = random_contact.id
     app.contact.edit_contact_by_id(contact.id, contact)
     new_contacts = db.get_contact_list()
-    for cc in old_contacts:
-        if str(cc)[:3] == random_contact.id:
-            index = old_contacts.index(cc)
-            old_contacts[index] = contact
+    index = old_contacts.index(random_contact)
+    old_contacts[index] = contact
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
