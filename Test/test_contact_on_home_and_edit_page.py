@@ -1,6 +1,17 @@
 import re
 
 
+def test_info_on_homepage_and_db(app, db):
+    contact_from_home_page = app.contact.get_contact_list()[0]
+    contact_from_home_page_lst = []
+    id = contact_from_home_page.id
+    contact_from_home_page.all_phones_from_home_page = clear(contact_from_home_page.all_phones_from_home_page)
+    contact_from_home_page.all_email_from_home_page = clear(contact_from_home_page.all_email_from_home_page)
+    contact_from_home_page_lst.append(contact_from_home_page)
+    contact_from_db = db.get_contact_list_by_id(id)
+    assert contact_from_db == contact_from_home_page_lst
+
+
 def test_info_on_home_and_edit_page(app):
     contact_from_home_page = app.contact.get_contact_list()[0]
     contact_from_edit_page = app.contact.get_contact_from_edit_page(0)
@@ -25,6 +36,10 @@ def merge_email_like_on_home_page(contact):
                                                                                 contact.email3])))
 
 
+def merge_data_like_on_home_page(list):
+    return "\n".join(filter(lambda x: x != "", filter(lambda x: x is not None, list)))
+
+
 def merge_phones_like_on_home_page(contact):
     return "\n".join(filter(lambda x: x != "", map(lambda x: clear(x), filter(lambda x: x is not None,
                                                                               [contact.homephone, contact.mobilephone,
@@ -32,4 +47,4 @@ def merge_phones_like_on_home_page(contact):
 
 
 def clear(s):
-    return re.sub("[() +-]", "", s)
+    return re.sub("[() +-]|\n", "", s)
