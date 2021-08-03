@@ -1,20 +1,16 @@
 import re
+from Model.contact import Contact
 
 
 def test_info_on_homepage_and_db(app, db):
-    contact_from_home_page = app.contact.get_contact_list()[0]
-    contact_from_home_page_lst = []
-    id = contact_from_home_page.id
-    contact_from_home_page.all_phones_from_home_page = clear(contact_from_home_page.all_phones_from_home_page)
-    contact_from_home_page.all_email_from_home_page = clear(contact_from_home_page.all_email_from_home_page)
-    contact_from_home_page_lst.append(contact_from_home_page)
-    contact_from_db = db.get_contact_list_by_id(id)
-    assert contact_from_db == contact_from_home_page_lst
+    contact_from_home_page = app.contact.get_contact_list()
+    contact_from_db = db.get_contact_list()
+    assert sorted(contact_from_db, key=Contact.id_or_max) == sorted(contact_from_home_page, key=Contact.id_or_max)
 
 
 def test_info_on_home_and_edit_page(app):
     contact_from_home_page = app.contact.get_contact_list()[0]
-    contact_from_edit_page = app.contact.get_contact_from_edit_page(0)
+    contact_from_edit_page = app.contact.get_contact_from_edit_page_by_index(0)
     assert contact_from_home_page.firstname == contact_from_edit_page.firstname
     assert contact_from_home_page.lastname == contact_from_edit_page.lastname
     assert contact_from_home_page.all_phones_from_home_page == merge_phones_like_on_home_page(contact_from_edit_page)
@@ -23,8 +19,8 @@ def test_info_on_home_and_edit_page(app):
 
 
 def test_phones_on_contact_view_page(app):
-    contact_from_view_page = app.contact.get_contact_from_view_page(0)
-    contact_from_edit_page = app.contact.get_contact_from_edit_page(0)
+    contact_from_view_page = app.contact.get_contact_from_view_page_by_index(0)
+    contact_from_edit_page = app.contact.get_contact_from_edit_page_by_index(0)
     assert contact_from_view_page.homephone == contact_from_edit_page.homephone
     assert contact_from_view_page.mobilephone == contact_from_edit_page.mobilephone
     assert contact_from_view_page.workphone == contact_from_edit_page.workphone
