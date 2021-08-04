@@ -5,6 +5,9 @@ from Model.contact import Contact
 def test_info_on_homepage_and_db(app, db):
     contact_from_home_page = app.contact.get_contact_list()
     contact_from_db = db.get_contact_list()
+    for i in contact_from_home_page:
+        i.all_email_from_home_page = re.sub("\n", "", i.all_email_from_home_page)
+        i.all_phones_from_home_page = re.sub("\n", "", i.all_phones_from_home_page)
     assert sorted(contact_from_db, key=Contact.id_or_max) == sorted(contact_from_home_page, key=Contact.id_or_max)
 
 
