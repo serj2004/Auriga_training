@@ -25,7 +25,7 @@ def add_new_group(app, new_group):
 def verify_group_added(db, group_list, new_group):
     old_groups = group_list
     new_groups = db.get_group_list()
-    # old_groups.append(new_group) Не пойму почему, но добавляется лишняя группа
+    old_groups.append(new_group)
     print(old_groups)
     print(new_groups)
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
