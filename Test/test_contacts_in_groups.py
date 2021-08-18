@@ -17,8 +17,8 @@ def test_add_contact_into_group(app, db):
 
 
 def test_delete_contact_from_group(app, db):
-    contact_list = app.contact.get_contact_list()
-    if len(contact_list) == 0:
+    contact_id_list = db.get_contacts_not_in_groups()
+    if len(contact_id_list) == 0:
         app.contact.create(Contact(lastname='1', firstname='2', bday='1', bmonth='January'))
     group_list = app.group.get_group_list()
     if len(group_list) == 0:

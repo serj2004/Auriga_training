@@ -100,7 +100,7 @@ class ContactHelper:
     def select_contact_by_id(self, id):
         wd = self.app.wd
         self.app.open_home_page()
-        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+        wd.find_element_by_id(id).click()
         return wd
 
     def return_to_home_page(self):
@@ -180,6 +180,7 @@ class ContactHelper:
         self.select_contact_by_id(contact_id)
         wd.find_element_by_name("to_group").click()
         Select(wd.find_element_by_name("to_group")).select_by_value(group_id)
+        wd.find_element_by_css_selector("select[name='to_group']>option[value='%s']" % group_id).click()
         wd.find_element_by_name("add").click()
 
     def delete_contact_from_group(self, contact_id, group_name):
