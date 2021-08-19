@@ -1,0 +1,149 @@
+{
+  "uid" : "65b2d0a0a820ee0",
+  "name" : "test_add_group[None:nameL4t|Ks?headerm.K4\"::footerFpWeMrr)]",
+  "fullName" : "Test.test_add_group.test_add_group[None:nameL4t|Ks?headerm.K4\"#footerFpWeMrr)]",
+  "historyId" : "2a95555c21f977da20fa8877047d587e",
+  "time" : {
+    "start" : 1629300135050,
+    "stop" : 1629300135051,
+    "duration" : 1
+  },
+  "status" : "broken",
+  "statusMessage" : "AttributeError: module 'pytest' has no attribute 'allure'",
+  "statusTrace" : "app = <Fixture.application.Application object at 0x000001EF833EFBB0>\ndb = <Fixture.db.DbFixture object at 0x000001EF833EFC70>, check_ui = False\njson_groups = None:nameL4t|Ks?headerm.K4\"::footerFpWeMrr)\n\n    def test_add_group(app, db, check_ui, json_groups):\n        group = json_groups\n>       with pytest.allure.step(\"Given a group list\"):\nE       AttributeError: module 'pytest' has no attribute 'allure'\n\nTest\\test_add_group.py:7: AttributeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "app",
+    "time" : {
+      "start" : 1629300134887,
+      "stop" : 1629300135049,
+      "duration" : 162
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "check_ui",
+    "time" : {
+      "start" : 1629300135049,
+      "stop" : 1629300135049,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "stop",
+    "time" : {
+      "start" : 1629300115197,
+      "stop" : 1629300115197,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "db",
+    "time" : {
+      "start" : 1629300115197,
+      "stop" : 1629300115212,
+      "duration" : 15
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "stop::fin",
+    "time" : {
+      "start" : 1629300135337,
+      "stop" : 1629300138938,
+      "duration" : 3601
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "db::fin",
+    "time" : {
+      "start" : 1629300135299,
+      "stop" : 1629300135300,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "Test"
+  }, {
+    "name" : "suite",
+    "value" : "test_add_group"
+  }, {
+    "name" : "subSuite",
+    "value" : "test_add_group[None:nameL4t|Ks?headerm.K4\""
+  }, {
+    "name" : "host",
+    "value" : "1-ПК"
+  }, {
+    "name" : "thread",
+    "value" : "1780-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "Test.test_add_group"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "json_groups",
+    "value" : "None:nameL4t|Ks?headerm.K4\"::footerFpWeMrr)"
+  } ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "65b2d0a0a820ee0.json",
+  "parameterValues" : [ "None:nameL4t|Ks?headerm.K4\"::footerFpWeMrr)" ]
+}
